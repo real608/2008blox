@@ -41,7 +41,7 @@ def saveGame(url):
     submitUser(game["creator"])
     game["updated"] = details.select("#LastUpdate")[0].get_text().replace("Updated: ", "")
     game["favorites"] = int(details.select("#Favorited")[0].get_text().replace("Favorited: ", "").replace(" times", ""))
-    game["visits"] = int(details.select(".Visited")[0].get_text().replace("Visited: ", "").replace(" times", "").replace(","))
+    game["visits"] = int(details.select(".Visited")[0].get_text().replace("Visited: ", "").replace(" times", ""))
     game["access"] = details.select('.PlayGames > div > span[style="display:inline;"]')[0].get_text().replace("\xa0", "") == "Public" #\xa0 is nbsp
     game["copylocked"] = details.select('.PlayGames > div > img')[0].get("alt") == "CopyLocked"
     game["comments"] = []
@@ -53,7 +53,7 @@ def saveGame(url):
         rawtime = comment.select(".Post > .Audit")[0].get_text()
         #remove duplicate spaces
         rawtime = ' '.join(rawtime.split())
-        commentinfo["time"] = rawtime.replace("Posted ", "")
+        commentinfo["time"] = rawtime.replace("Posted ", "").split("ago ")[0] + "ago"
         commentinfo["content"] = comment.select(".Post > .Content")[0].get_text()
         game["comments"].append(commentinfo)
         submitUser(commentinfo["author"])

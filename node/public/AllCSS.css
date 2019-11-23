@@ -6894,3 +6894,20 @@ playback timings (ms):
 #ItemContainer .CommentsContainer .Comment {
 	overflow: auto;
 }
+
+/* omg i have to define sizes for everything */
+
+#Thumbnail_Place > a > img {
+	width: 420px;
+	height: 230px;
+}
+
+.Commenter > .Avatar > a > img {
+	width: 64px;
+	height: 64px;
+}
+
+.Avatar > a > img {
+	width: 100px;
+	height: 100px;
+}

@@ -27,7 +27,7 @@
                         <div id="Details">
 
                             <div id="Thumbnail_Place">
-                                <a id="ctl00_cphRoblox_AssetThumbnailImage_Place" disabled="disabled" title=<%= game.name %> onclick="return false" style="display:inline-block;"><img src=<%= game.picture %> border="0" alt="ROBLOX Spanish Tutorial/Tutorial ROBLOX Español"></a>
+                                <a id="ctl00_cphRoblox_AssetThumbnailImage_Place" disabled="disabled" title="<%= game.name %>" onclick="return false" style="display:inline-block;"><img src="<%= game.picture %>" border="0" alt="<%= game.name %>"></a>
                             </div>
                             <div id="Actions_Place">
                                 <a id="ctl00_cphRoblox_FavoriteThisPlaceButton" disabled="disabled">Favorite</a>
@@ -63,7 +63,7 @@
 
                                 <div id="Creator" class="Creator">
                                     <div class="Avatar">
-                                        <a id="ctl00_cphRoblox_AvatarImage" title=<%= game.creator.name %> href="/User.aspx?ID=<%= game.creator.id %>" style="display:inline-block;cursor:pointer;"><img src="<%= game.creator.picture %>" border="0" alt="<%= game.creator.name %>" blankurl="http://t6.roblox.com:80/blank-100x100.gif"></a>
+                                        <a id="ctl00_cphRoblox_AvatarImage" title="<%= game.creator.name %>" href="/User.aspx?ID=<%= game.creator.id %>" style="display:inline-block;cursor:pointer;"><img src="<%= game.creator.picture %>" border="0" alt="<%= game.creator.name %>" blankurl="http://t6.roblox.com:80/blank-100x100.gif"></a>
                                     </div>
                                     Creator: <a id="ctl00_cphRoblox_CreatorHyperLink" href="User.aspx?ID=<%= game.creator.id %>"><%= game.creator.name %></a>
                                 </div>
@@ -157,7 +157,7 @@
                                                         </div>
                                                         <div class="Post">
                                                             <div class="Audit">
-                                                                Posted 1 day ago by
+                                                                Posted <%= comment.time %> by
                                                                 <a id="ctl00_cphRoblox_TabbedInfo_CommentaryTab_CommentsPane_CommentsRepeater_ctl01_UsernameHyperLink" href="User.aspx?ID=<%= comment.author.id %>"><%= comment.author.name %></a>
                                                             </div>
                                                             <div class="Content"><%= comment.content %>
