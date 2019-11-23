@@ -1,0 +1,12 @@
+name: .Title
+id: r"ID=(\d+)"
+status: .UserOfflineMessage
+showcase: []
+friends: {"frontpage": [ {name: <text node of ".Friend > .Summary > .Name > a" >],
+         "all": <href "#Friends > h4"> {"date": <url>,
+                 "contents": [ <text node of ".Friend > .Summary > .Name > a"> ]}
+         }
+favorites: []
+
+
+
