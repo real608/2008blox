@@ -25,6 +25,73 @@ badgeimage = {"Administrator": "/Badges/Administrator-75x75.png",
             "Warrior": "/Badges/Warrior-75x75.jpg",
             "Bloxxer": "/Badges/Bloxxer-75x75.jpg"}
 
+gametestinginfo = {
+    "game": {
+      "name": "bruh moment",
+      "creator": {
+        "name": "Warner",
+        "picture": "http://www.canadianflowerdelivery.com/assets/images/content/peony_195x195.jpg"
+      },
+      "comments": [
+        {
+          "author": {
+            "name": "Guerra",
+            "picture": "http://www.canadianflowerdelivery.com/assets/images/content/peony_195x195.jpg"
+          },
+          "time": "Posted 3 days ago",
+          "content": "irure sint fugiat reprehenderit enim nulla voluptate eu aliqua sint"
+        },
+        {
+          "author": {
+            "name": "Hess",
+            "picture": "http://www.canadianflowerdelivery.com/assets/images/content/peony_195x195.jpg"
+          },
+          "time": "Posted 2 days ago",
+          "content": "dolor proident cillum proident consectetur do exercitation labore voluptate ullamco"
+        },
+        {
+          "author": {
+            "name": "Barron",
+            "picture": "http://www.canadianflowerdelivery.com/assets/images/content/peony_195x195.jpg"
+          },
+          "time": "Posted 1 days ago",
+          "content": "elit aliqua reprehenderit proident quis labore laborum amet esse esse"
+        },
+        {
+          "author": {
+            "name": "Leonard",
+            "picture": "http://www.canadianflowerdelivery.com/assets/images/content/peony_195x195.jpg"
+          },
+          "time": "Posted 4 days ago",
+          "content": "exercitation reprehenderit ullamco id ipsum elit in cupidatat esse culpa"
+        },
+        {
+          "author": {
+            "name": "Wilson",
+            "picture": "http://www.canadianflowerdelivery.com/assets/images/content/peony_195x195.jpg"
+          },
+          "time": "Posted 1 days ago",
+          "content": "labore incididunt ullamco minim dolore eu ex ex do ex"
+        },
+        {
+          "author": {
+            "name": "Byrd",
+            "picture": "http://www.canadianflowerdelivery.com/assets/images/content/peony_195x195.jpg"
+          },
+          "time": "Posted 1 days ago",
+          "content": "labore consequat laborum fugiat excepteur irure cupidatat proident proident eu"
+        },
+        {
+          "author": {
+            "name": "Ashley",
+            "picture": "http://www.canadianflowerdelivery.com/assets/images/content/peony_195x195.jpg"
+          },
+          "time": "Posted 1 days ago",
+          "content": "aute elit occaecat Lorem incididunt nulla commodo dolore amet consectetur"
+        }
+      ]
+    }
+  }
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 app.use(express.static('public'))
@@ -33,6 +100,10 @@ app.use(express.static('public'))
 // index page 
 app.get('/', function(req, res) {
     res.render('index.ejs');
+});
+
+app.get('/game', function(req, res) {
+    res.render('..\\templates\\game.ejs', gametestinginfo)
 });
 
 app.get('/User.aspx', function(req, res) {
