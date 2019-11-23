@@ -111,7 +111,7 @@ app.get('/', function(req, res) {
     res.render('index.ejs');
 });
 
-app.get('/game', function(req, res) {
+app.get('/test', function(req, res) {
     res.render('templates/game.ejs', gametestinginfo);
 });
 
@@ -119,5 +119,5 @@ app.get('/User.aspx', function(req, res) {
 
 });
 
-app.listen(1337);
+app.listen(3000);
 console.log('1337 is the magic port');

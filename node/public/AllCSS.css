@@ -6888,5 +6888,9 @@ playback timings (ms):
 }
 
 .Comments > .Comment:nth-child(even) {
-	background-color: #eee;
+	background-color: #eee !important;
+}
+
+#ItemContainer .CommentsContainer .Comment {
+	overflow: auto;
 }
