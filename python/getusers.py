@@ -40,9 +40,9 @@ def saveGame(url):
     game["creator"] = getID(details.select("#Creator > a")[0].get("href"))
     submitUser(game["creator"])
     game["updated"] = details.select("#LastUpdate")[0].get_text().replace("Updated: ", "")
-    game["favorites"] = details.select("#Favorited")[0].get_text().replace("Favorited: ", "")
-    game["updated"] = details.select(".Visited")[0].get_text().replace("Visited: ", "")
-    game["access"] = details.select('.PlayGames > div > span[style="display:inline;"]')[0].get_text().replace("\xa0", "")
+    game["favorites"] = int(details.select("#Favorited")[0].get_text().replace("Favorited: ", "").replace(" times", ""))
+    game["visits"] = int(details.select(".Visited")[0].get_text().replace("Visited: ", "").replace(" times", "").replace(","))
+    game["access"] = details.select('.PlayGames > div > span[style="display:inline;"]')[0].get_text().replace("\xa0", "") == "Public" #\xa0 is nbsp
     game["copylocked"] = details.select('.PlayGames > div > img')[0].get("alt") == "CopyLocked"
     game["comments"] = []
     comments = details.select(".CommentsContainer > .Comments")[0].findChildren("div", recursive=False)

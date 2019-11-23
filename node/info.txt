@@ -1,12 +1,30 @@
-name: .Title
-id: r"ID=(\d+)"
-status: .UserOfflineMessage
-showcase: []
-friends: {"frontpage": [ {name: <text node of ".Friend > .Summary > .Name > a" >],
-         "all": <href "#Friends > h4"> {"date": <url>,
-                 "contents": [ <text node of ".Friend > .Summary > .Name > a"> ]}
-         }
-favorites: []
-
-
-
+{ //mock game generator at https://www.json-generator.com/
+  game: { 
+    name: 'bruh moment',
+    id: '{{integer(1, 99999)}}',
+    description: '{{lorem(1, "paragraph")}}',
+    updated: '{{integer(1, 6)}} days ago',
+    favorites: '{{integer(1, 6)}}',
+    visits: '{{integer(1, 400)}}',
+    access: '{{bool()}}',
+    copylocked: '{{bool()}}',
+    picture: 'https://3.bp.blogspot.com/-b3s9qnGcgbA/UYTEb-PR19I/AAAAAAAAKEU/Dz4XMhLiTP4/s1600/Blue-Flower3333.jpg',
+    creator: {
+      id: '{{integer(1, 99999)}}',
+      name: '{{surname()}}',
+      picture: 'http://www.canadianflowerdelivery.com/assets/images/content/peony_195x195.jpg'
+    },
+      comments: [
+		'{{repeat(5, 7)}}',
+        {
+          author: {
+            id: '{{integer(1, 99999)}}',
+            name: '{{surname()}}',
+              picture: 'http://www.canadianflowerdelivery.com/assets/images/content/peony_195x195.jpg'
+          },
+          time: 'Posted {{integer(1, 6)}} days ago',
+          content: '{{lorem(10, "words")}}'
+        }
+      ]
+  }
+}
