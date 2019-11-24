@@ -4,6 +4,8 @@ var express = require('express');
 var path = require('path');
 var app = express();
 
+var port = process.env.PORT || 8080
+
 badgealt = {"Administrator": "This badge identifies an account as belonging to a Roblox administrator. Only official Roblox administrators will possess this badge. If someone claims to be an admin, but does not have this badge, they are potentially trying to mislead you. If this happens, please report abuse and we will delete the imposter's account.",
             "Forum Moderator": "Users with this badge are forum moderators. They have special powers on the ROBLOX forum and are able to delete threads that violate the Community Guidelines. Users who are exemplary citizens on ROBLOX over a long period of time may be invited to be moderators. This badge is granted by invitation only.",
             "Image Moderator": "Users with this badge are image moderators. Image moderators have special powers on ROBLOX that allow them to approve or disapprove images that other users upload. Rejected images are immediately banished from the site. Users who are exemplary citizens on ROBLOX over a long period of time may be invited to be moderators. This badge is granted by invitation only.",
@@ -119,5 +121,5 @@ app.get('/User.aspx', function(req, res) {
 
 });
 
-app.listen(3000);
-console.log('1337 is the magic port');
+app.listen(port);
+console.log(port + ' is the magic port');
