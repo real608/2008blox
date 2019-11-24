@@ -6895,6 +6895,21 @@ playback timings (ms):
 	overflow: auto;
 }
 
+#DisclaimerContainer {
+	padding: .5rem;
+	border: 0;
+}
+
+#DisclaimerAcceptance {
+	margin-top: 1rem;
+	text-align: center;
+}
+
+#Disclaimer {
+	font-size: 2em !important;
+	background-color: #eee !important;
+	border: 0 !important;
+}
 /* omg i have to define sizes for everything */
 
 #Thumbnail_Place > a > img {

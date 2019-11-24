@@ -1,12 +1,14 @@
 // server.js
 // load the things we need
 var express = require('express');
+var bodyParser = require('body-parser')
+var cookieParser = require('cookie-parser')
 var path = require('path');
 var app = express();
 
 var port = process.env.PORT || 8080
 
-badgealt = {"Administrator": "This badge identifies an account as belonging to a Roblox administrator. Only official Roblox administrators will possess this badge. If someone claims to be an admin, but does not have this badge, they are potentially trying to mislead you. If this happens, please report abuse and we will delete the imposter's account.",
+var badgealt = {"Administrator": "This badge identifies an account as belonging to a Roblox administrator. Only official Roblox administrators will possess this badge. If someone claims to be an admin, but does not have this badge, they are potentially trying to mislead you. If this happens, please report abuse and we will delete the imposter's account.",
             "Forum Moderator": "Users with this badge are forum moderators. They have special powers on the ROBLOX forum and are able to delete threads that violate the Community Guidelines. Users who are exemplary citizens on ROBLOX over a long period of time may be invited to be moderators. This badge is granted by invitation only.",
             "Image Moderator": "Users with this badge are image moderators. Image moderators have special powers on ROBLOX that allow them to approve or disapprove images that other users upload. Rejected images are immediately banished from the site. Users who are exemplary citizens on ROBLOX over a long period of time may be invited to be moderators. This badge is granted by invitation only.",
             "Homestead": "The homestead badge is earned by having your personal place visited 100 times. Players who achieve this have demonstrated their ability to build cool things that other Robloxians were interested enough in to check out. Get a jump-start on earning this reward by inviting people to come visit your place.",
@@ -17,7 +19,7 @@ badgealt = {"Administrator": "This badge identifies an account as belonging to a
             "Warrior": "This badge is given to the warriors of Robloxia, who have time and time again overwhelmed their foes in battle. To earn this badge, you must rack up 100 knockouts. Anyone with this badge knows what to do in a fight!",
             "Bloxxer": "Anyone who has earned this badge is a very dangerous player indeed. Those Robloxians who excel at combat can one day hope to achieve this honor, the Bloxxer Badge. It is given to the warrior who has bloxxed at least 250 enemies and who has tasted victory more times than he or she has suffered defeat. Salute!"}
 
-badgeimage = {"Administrator": "/Badges/Administrator-75x75.png",
+var badgeimage = {"Administrator": "/Badges/Administrator-75x75.png",
             "Forum Moderator": "/Badges/ForumModerator-75x75.png",
             "Image Moderator": "/Badges/ImageModerator-75x75.png",
             "Homestead": "/Badges/Homestead-70x75.jpg",
@@ -28,7 +30,7 @@ badgeimage = {"Administrator": "/Badges/Administrator-75x75.png",
             "Warrior": "/Badges/Warrior-75x75.jpg",
             "Bloxxer": "/Badges/Bloxxer-75x75.jpg"}
 
-gametestinginfo = {
+var gametestinginfo = {
     "game": {
       "name": "bruh moment",
       "id": 56696,
@@ -106,15 +108,38 @@ gametestinginfo = {
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 app.use(express.static(path.join(__dirname, '/public')));
+app.use(cookieParser())
+app.use(bodyParser.urlencoded({ extended: false }))
 // use res.render to load up an ejs view file
 
 // index page 
+app.get('*', function(req, res, next) {
+  if (req.cookies.accepted == "true" || req.path == "/ohnoes") {
+    next();
+  } else {
+    res.render('disclaimer.ejs');
+  }
+});
+
 app.get('/', function(req, res) {
     res.render('index.ejs');
 });
 
 app.get('/test', function(req, res) {
-    res.render('templates/game.ejs', gametestinginfo);
+
+});
+
+app.get('/ohnoes', function(req, res) {
+   res.sendFile(path.join(__dirname, "./public/oof.png"));
+});
+
+app.post('/Accept.aspx', function(req, res) {
+  if (req.body.yes) {
+    res.cookie('accepted', true, { maxAge: 900000, httpOnly: true });
+    res.redirect('/')
+  } else {
+    res.redirect('/ohnoes')
+  }
 });
 
 app.get('/User.aspx', function(req, res) {
