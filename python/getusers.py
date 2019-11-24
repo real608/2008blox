@@ -25,23 +25,33 @@ def downloadU(file_url, id):
 def getID(text):
     regex = r".+?ID=(\d+)"
     subst = r"\g<1>"
-    return int(re.sub(regex, subst, text, 0, re.MULTILINE))
+    return int(re.sub(regex, subst, text, 0, re.MULTILINE | re.IGNORECASE))
+
+def getUsers(html):
+    regex = r"User\.aspx\?ID=(\d+)"
+    result = re.findall(regex, html, re.IGNORECASE)
+    for user in result:
+        submitUser(user)
 
 def submitUser(userid):
     if not userid in users:
         users[userid] = 0
 
-def saveGame(url):
+def _int(n):
+    return int(n.replace(",", ""))
+
+def saveGame(url): #dont be afraid of this part just take it left to right
     game = {}
-    details = BeautifulSoup(requests.get(url).content)
+    html = requests.get(url)
+    details = BeautifulSoup(html.content, features="lxml")
+    getUsers(str(details.select("#Body")[0]))
     game["name"] = details.select("#Item > h2")[0].get_text()
     game["id"] = getID(url)
     game["description"] = details.select("#Description")[0].get_text()
     game["creator"] = getID(details.select("#Creator > a")[0].get("href"))
-    submitUser(game["creator"])
     game["updated"] = details.select("#LastUpdate")[0].get_text().replace("Updated: ", "")
-    game["favorites"] = int(details.select("#Favorited")[0].get_text().replace("Favorited: ", "").replace(" times", ""))
-    game["visits"] = int(details.select(".Visited")[0].get_text().replace("Visited: ", "").replace(" times", ""))
+    game["favorites"] = _int(details.select("#Favorited")[0].get_text().replace("Favorited: ", "").replace(" times", ""))
+    game["visits"] = _int(details.select(".Visited")[0].get_text().replace("Visited: ", "").replace(" times", ""))
     game["access"] = details.select('.PlayGames > div > span[style="display:inline;"]')[0].get_text().replace("\xa0", "") == "Public" #\xa0 is nbsp
     game["copylocked"] = details.select('.PlayGames > div > img')[0].get("alt") == "CopyLocked"
     game["comments"] = []
@@ -56,7 +66,17 @@ def saveGame(url):
         commentinfo["time"] = rawtime.replace("Posted ", "").split("ago ")[0] + "ago"
         commentinfo["content"] = comment.select(".Post > .Content")[0].get_text()
         game["comments"].append(commentinfo)
-        submitUser(commentinfo["author"])
+    game["servers"] = []
+    servers = details.select("#ctl00_cphRoblox_TabbedInfo_GamesTab_RunningGamesUpdatePanel tr")
+    for server in servers:
+        peeps = []
+        #raw
+        servertext = server.select("td > p")[0].get_text()
+        #remove duplicate spaces
+        servertext = ' '.join(servertext.split())
+        for robloxian in server.select("a"):
+            peeps.append(getID(robloxian.get("href")))
+        game["servers"].append({"label": servertext, "people": peeps})
         
     print(game)
 
@@ -67,7 +87,7 @@ def saveUser(url):
     user = {}
     data = requests.get(Userurl).content
 
-    soup = BeautifulSoup(data)
+    soup = BeautifulSoup(data, features="lxml")
     user["name"] = soup.select(".Title")[0].get_text()
     user["id"] = getID(Userurl)
     user["description"] = soup.select("#ctl00_cphRoblox_rbxUserPane_rbxPublicUser_lBlurb")[0].get_text()
@@ -94,5 +114,6 @@ def saveUser(url):
 
     #favorites > name, id
     user["favorites"] = []
+    print(user)
 
-saveGame("https://web.archive.org/web/20080824202910/http://www.roblox.com/Item.aspx?ID=3589278")
+saveUser("https://web.archive.org/web/20080825043025/http://www.roblox.com/User.aspx?ID=693923")
