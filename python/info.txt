@@ -1,6 +1,0 @@
-name: .Title
-url: r"ID=\d+"
-friends: {"frontpage": [ <text node of ".Friend > .Summary > .Name > a">],
-         "all": <"#Friends > h4"> {"date": <url>,
-                 "contents": [ <text node of ".Friend > .Summary > .Name > a"> ]}
-         }
