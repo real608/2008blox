@@ -6,6 +6,7 @@
         "cookie-parser": "^1.4.4",
         "ejs": "^2.5.5",
         "express": "^4.6.1",
+        "express-device": "^0.4.2",
         "nodemon": "^2.0.1"
     },
     "scripts": {
