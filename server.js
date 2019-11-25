@@ -116,7 +116,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // index page 
 app.get('*', function(req, res, next) {
-  if (req.cookies.accepted == "true" || req.path == "/ohnoes" || req.device.type == "bot") {
+  if (req.cookies.accepted == "true" || req.path == "/ohnoes" || req.path == "/discord" || req.device.type == "bot") {
     next();
   } else {
     res.render('disclaimer.ejs');
