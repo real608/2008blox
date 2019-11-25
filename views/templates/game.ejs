@@ -9,11 +9,10 @@
 <meta name="author" content="ROBLOX Corporation">
 <meta name="description" content="ROBLOX is SAFE for kids! ROBLOX is a FREE casual virtual world with fully constructible/desctructible 3D environments and immersive physics. Build, battle, chat, or just hang out.">
 <meta name="keywords" content="game, video game, building game, construction game, online game, LEGO game, LEGO, MMO, MMORPG, rowblocks, rowbloks, roblocks, robloks, roblocs, roblok">
-
+<%- include ../partials/scripts -%>
 </head>
 
 <body>
-    <!-- BEGIN WAYBACK TOOLBAR INSERT -->
 
     <form name="aspnetForm" method="post" action="Item.aspx?ID=3589278" id="aspnetForm">
 
@@ -62,7 +61,7 @@
 
                                 <div id="Creator" class="Creator">
                                     <div class="Avatar">
-                                        <a id="ctl00_cphRoblox_AvatarImage" title="<%= game.creator.name %>" href="/User.aspx?ID=<%= game.creator.id %>" style="display:inline-block;cursor:pointer;"><img src="<%= game.creator.picture %>" border="0" alt="<%= game.creator.name %>" blankurl="http://t6.roblox.com:80/blank-100x100.gif"></a>
+                                        <a id="ctl00_cphRoblox_AvatarImage" title="<%= game.creator.name %>" href="/User.aspx?ID=<%= game.creator.id %>" style="display:inline-block;cursor:pointer;"><img src="<%= game.creator.picture %>" border="0" alt="<%= game.creator.name %>"></a>
                                     </div>
                                     Creator: <a id="ctl00_cphRoblox_CreatorHyperLink" href="User.aspx?ID=<%= game.creator.id %>"><%= game.creator.name %></a>
                                 </div>

@@ -124,7 +124,15 @@ app.get('*', function(req, res, next) {
 });
 
 app.get('/', function(req, res) {
-    res.render('index.ejs');
+    res.render('index.ejs', {'blankurl': req.cookies.blankurl});
+});
+
+app.get('/license', function(req, res) {
+    res.redirect("https://github.com/2008blox/2008blox/blob/master/LICENSE"); //Gotta be professional, ya know?
+});
+
+app.get('/discord', function(req, res) {
+  res.redirect("https://discord.gg/63wDvud");
 });
 
 app.get('/test', function(req, res) {
@@ -138,6 +146,7 @@ app.get('/ohnoes', function(req, res) {
 app.post('/Accept.aspx', function(req, res) {
   if (req.body.yes) {
     res.cookie('accepted', true, { maxAge: 900000, httpOnly: true });
+    res.cookie('blankurl', "/blank.png", { maxAge: 900000, httpOnly: true });
     res.redirect('/')
   } else {
     res.redirect('/ohnoes')
