@@ -127,6 +127,15 @@ app.get('/', function(req, res) {
     res.render('index.ejs', {'blankurl': req.cookies.blankurl});
 });
 
+app.get('/Parents.aspx', function(req, res) {
+  res.render('parents.ejs', {'blankurl': req.cookies.blankurl});
+})
+
+app.get('/Parents/:page.aspx', function(req, res) {
+  res.render('parents/' + req.params.page + '.ejs', {'blankurl': req.cookies.blankurl});
+})
+
+
 app.get('/license', function(req, res) {
     res.redirect("https://github.com/2008blox/2008blox/blob/master/LICENSE"); //Gotta be professional, ya know?
 });

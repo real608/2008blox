@@ -1,4 +1,4 @@
-/*! 2008blox | (c) the 2008blox organization and other contributors | 2008blox.com/license */
+/*! 2008blox | (c) the 2008blox organization and other contributors | https://2008blox.com/license */
 
 // https://stackoverflow.com/questions/18683503/jquery-on-image-error-not-working-on-dynamic-images
 

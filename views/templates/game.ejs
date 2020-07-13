@@ -26,18 +26,18 @@
                         <div id="Details">
 
                             <div id="Thumbnail_Place">
-                                <a id="ctl00_cphRoblox_AssetThumbnailImage_Place" disabled="disabled" title="<%= game.name %>" onclick="return false" style="display:inline-block;"><img src="<%= game.picture %>" border="0" alt="<%= game.name %>"></a>
+                                <a id="ctl00_cphRoblox_AssetThumbnailImage_Place" disabled="disabled" title="<%= game.name %>" onclick="return false" style="display:inline-block;"><img src="<%= game.picture %>"  alt="<%= game.name %>"></a>
                             </div>
                             <div id="Actions_Place">
                                 <a id="ctl00_cphRoblox_FavoriteThisPlaceButton" disabled="disabled">Favorite</a>
                             </div>
                             <div id="ctl00_cphRoblox_PlayGames" class="PlayGames">
                                 <div style="text-align: center; margin: 1em 5px;">
-                                    <span id="ctl00_cphRoblox_PlaceAccessIndicator_FriendsOnlyLocked" style="display: none"><img id="ctl00_cphRoblox_PlaceAccessIndicator_iFriendsOnly_Locked" src="/locked.png" alt="Locked" border="0">&nbsp;Friends-only</span>
-                                    <span id="ctl00_cphRoblox_PlaceAccessIndicator_FriendsOnlyUnlocked" style="display: none"><img id="ctl00_cphRoblox_PlaceAccessIndicator_iFriendsOnly_Unlocked" src="/unlocked.png" alt="Unlocked" border="0">&nbsp;Friends-only: You have access</span>
-                                    <span id="ctl00_cphRoblox_PlaceAccessIndicator_Public" style="display:inline;"><img id="ctl00_cphRoblox_PlaceAccessIndicator_iPublic" src="/public.png" alt="Public" border="0">&nbsp;Public</span>
+                                    <span id="ctl00_cphRoblox_PlaceAccessIndicator_FriendsOnlyLocked" style="display: none"><img id="ctl00_cphRoblox_PlaceAccessIndicator_iFriendsOnly_Locked" src="/locked.png" alt="Locked" >&nbsp;Friends-only</span>
+                                    <span id="ctl00_cphRoblox_PlaceAccessIndicator_FriendsOnlyUnlocked" style="display: none"><img id="ctl00_cphRoblox_PlaceAccessIndicator_iFriendsOnly_Unlocked" src="/unlocked.png" alt="Unlocked" >&nbsp;Friends-only: You have access</span>
+                                    <span id="ctl00_cphRoblox_PlaceAccessIndicator_Public" style="display:inline;"><img id="ctl00_cphRoblox_PlaceAccessIndicator_iPublic" src="/public.png" alt="Public" >&nbsp;Public</span>
 
-                                    <img id="ctl00_cphRoblox_CopyLockedIcon" src="/CopyLocked.png" alt="CopyLocked" border="0"> Copy Protection: CopyLocked
+                                    <img id="ctl00_cphRoblox_CopyLockedIcon" src="/CopyLocked.png" alt="CopyLocked" > Copy Protection: CopyLocked
                                 </div>
 
                                 <input type="hidden" name="ctl00$cphRoblox$VisitButtons$ClientInstaller$HiddenField1" id="ctl00_cphRoblox_VisitButtons_ClientInstaller_HiddenField1">
@@ -61,7 +61,7 @@
 
                                 <div id="Creator" class="Creator">
                                     <div class="Avatar">
-                                        <a id="ctl00_cphRoblox_AvatarImage" title="<%= game.creator.name %>" href="/User.aspx?ID=<%= game.creator.id %>" style="display:inline-block;cursor:pointer;"><img src="<%= game.creator.picture %>" border="0" alt="<%= game.creator.name %>"></a>
+                                        <a id="ctl00_cphRoblox_AvatarImage" title="<%= game.creator.name %>" href="/User.aspx?ID=<%= game.creator.id %>" style="display:inline-block;cursor:pointer;"><img src="<%= game.creator.picture %>"  alt="<%= game.creator.name %>"></a>
                                     </div>
                                     Creator: <a id="ctl00_cphRoblox_CreatorHyperLink" href="User.aspx?ID=<%= game.creator.id %>"><%= game.creator.name %></a>
                                 </div>
@@ -77,7 +77,7 @@
                                 <div id="ReportAbuse">
                                     <div id="ctl00_cphRoblox_AbuseReportButton1_AbuseReportPanel" class="ReportAbusePanel">
 
-                                        <span class="AbuseIcon"><a id="ctl00_cphRoblox_AbuseReportButton1_ReportAbuseIconHyperLink" ><img src="/abuse.png" alt="Report Abuse" border="0"></a></span>
+                                        <span class="AbuseIcon"><a id="ctl00_cphRoblox_AbuseReportButton1_ReportAbuseIconHyperLink" ><img src="/abuse.png" alt="Report Abuse" ></a></span>
                                         <span class="AbuseButton"><a id="ctl00_cphRoblox_AbuseReportButton1_ReportAbuseTextHyperLink" href="">Report Abuse</a></span>
 
                                     </div>
@@ -150,7 +150,7 @@
                                                     <div class="Comment">
                                                         <div class="Commenter">
                                                             <div class="Avatar">
-                                                                <a id="ctl00_cphRoblox_TabbedInfo_CommentaryTab_CommentsPane_CommentsRepeater_ctl01_AvatarImage" title="<%= comment.author.name %>" href="/User.aspx?ID=<%= comment.author.id %>" style="display:inline-block;cursor:pointer;"><img src="<%= comment.author.picture %>" border="0" alt="<%= comment.author.name %>"></a>
+                                                                <a id="ctl00_cphRoblox_TabbedInfo_CommentaryTab_CommentsPane_CommentsRepeater_ctl01_AvatarImage" title="<%= comment.author.name %>" href="/User.aspx?ID=<%= comment.author.id %>" style="display:inline-block;cursor:pointer;"><img src="<%= comment.author.picture %>"  alt="<%= comment.author.name %>"></a>
                                                             </div>
                                                         </div>
                                                         <div class="Post">
