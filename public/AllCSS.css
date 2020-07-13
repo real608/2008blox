@@ -4227,7 +4227,7 @@ input.Text {
 }
 
 #Banner {
-	background-image: url(/Banner.jpg);
+	background-image: url(/images/Banner.jpg);
 	background-repeat: no-repeat;
 	border-bottom: solid 1px #000;
 	border-left: solid 1px #000;
