@@ -3125,13 +3125,13 @@ dt {
 
 #SplashContainer #RobloxAtAGlance {
 	background-color: #eee;
-	border: solid 1px #000;
-	float: right;
-	margin: 0 0 10px 0;
-	padding: 10px;
-	position: relative;
-	text-align: left;
-	width: 715px;
+    border: solid 1px #000;
+    float: right;
+    margin: 0 0 10px 0;
+    padding: 10px;
+    position: relative;
+    text-align: left;
+    width: 715px;
 }
 
 #SplashContainer #RobloxAtAGlance #ThingsToDo {
@@ -3170,8 +3170,8 @@ dt {
 
 #SplashContainer #RobloxAtAGlance #Showcase {
 	float: right;
-	margin: 0;
-	width: 400px;
+    margin: 0 0 10px 0;
+    width: 400px;
 }
 
 #SplashContainer #RobloxAtAGlance #Install {
