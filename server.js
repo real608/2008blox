@@ -154,8 +154,8 @@ app.get('/ohnoes', function(req, res) {
 
 app.post('/Accept.aspx', function(req, res) {
   if (req.body.yes) {
-    res.cookie('accepted', true, { maxAge: 900000, httpOnly: true });
-    res.cookie('blankurl', "/blank.png", { maxAge: 900000, httpOnly: true });
+    res.cookie('accepted', true, { expires: new Date(Date.now() + 900000), maxAge: 900000, httpOnly: true });
+    res.cookie('blankurl', "/blank.png", { expires: new Date(Date.now() + 900000), maxAge: 900000, httpOnly: true });
     res.redirect('/')
   } else {
     res.redirect('/ohnoes')
