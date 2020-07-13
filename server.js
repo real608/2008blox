@@ -166,5 +166,9 @@ app.get('/User.aspx', function(req, res) {
 
 });
 
+app.get('*', function(req, res){
+  return res.status(404).render('404.ejs');
+});
+
 app.listen(port);
 console.log(port + ' is the magic port');

@@ -6,11 +6,14 @@
 var imgNotFound = function() {
     $(this).unbind("error").attr("src", getBlankImage());
 };
+
+// 2020 update: .error has been deprecated. see: https://api.jquery.com/error/
+
 // Bind image error on document load
-$("img").error(imgNotFound);
+$("img").on("error", imgNotFound);
 // Bind image error after ajax complete
 $(document).ajaxComplete(function(){
-    $("img").error(imgNotFound);
+    $("img").on("error", imgNotFound)
 });
 
 // https://stackoverflow.com/questions/432493/how-do-you-access-the-matched-groups-in-a-javascript-regular-expression
