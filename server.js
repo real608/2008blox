@@ -149,6 +149,7 @@ app.get('*', function(req, res, next) {
       if (time.length == 7) { // Pad
           time = "0" + time
       }
+      return time
     }
 
     res.locals.formatDate = function(date) {
@@ -158,7 +159,7 @@ app.get('*', function(req, res, next) {
       const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(threadDate)
       const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(threadDate)
 
-      return da + " " + mo + " " + ye + " " + time
+      return da + " " + mo + " " + ye + " " + getTime(threadDate)
     }
 
     res.locals.formatRelativeDate = function(date) {

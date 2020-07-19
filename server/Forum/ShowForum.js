@@ -9,12 +9,12 @@ module.exports = async function(database, req) {
     FROM posts
     WHERE thread = true AND subforum = $1
     ORDER BY postdate DESC
-    LIMIT 25
-    OFFSET $2;
+    OFFSET $2
+    LIMIT 25;
     `, [req.query.ForumID, offset])
     let group = forum.find(g => g.forums.some(f => f.id == req.query.ForumID))
     return {forum: group.forums.find(f => f.id == req.query.ForumID),
         group: group,
         posts: res.rows,
-        page: page}
+        page: parseInt(page)}
 }

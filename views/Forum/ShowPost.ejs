@@ -226,9 +226,7 @@
                                                                                                             class="normalTextSmaller">
                                                                                                             Posted:
                                                                                                         </span><span
-                                                                                                            class="normalTextSmaller">20
-                                                                                                            Aug 2008 10:17
-                                                                                                            PM</span></a>
+                                                                                                            class="normalTextSmaller"><%= formatDate(post.postdate) %></span></a>
                                                                                                 </td>
                                                                                             </tr>
                                                                                             <tr>
@@ -285,26 +283,56 @@
                                                                     </tbody>
                                                                 </table><span
                                                                     id="ctl00_cphRoblox_PostView1_ctl00_Pager">
+                                                                    <script>
+                                                                        function goto(page) {
+                                                                            if ('URLSearchParams' in window) {
+                                                                                var searchParams = new URLSearchParams(window.location.search);
+                                                                                searchParams.set("page", page);
+                                                                                window.location.search = searchParams.toString();
+                                                                            }
+                                                                        }
+                                                                    </script>
                                                                     <table cellspacing="0" cellpadding="0" border="0"
                                                                         width="100%">
                                                                         <tbody>
+
                                                                             <tr>
                                                                                 <td><span
                                                                                         class="normalTextSmallBold">Page
-                                                                                        1 of 2</span></td>
+                                                                                        <%= page + 1 %> of <%= pages + 1 %></span></td>
                                                                                 <td align="right"><span><span
                                                                                             class="normalTextSmallBold">Goto
-                                                                                            to page: </span><span
-                                                                                            class="normalTextSmallBold">[1]</span><span
-                                                                                            class="normalTextSmallBold">,
-                                                                                        </span><a
-                                                                                            id="ctl00_cphRoblox_PostView1_ctl00_Pager_Page1"
-                                                                                            class="normalTextSmallBold"
-                                                                                            href="javascript:__doPostBack('ctl00$cphRoblox$PostView1$ctl00$Pager$Page1','')">2</a><span
-                                                                                            class="normalTextSmallBold">&nbsp;</span><a
+                                                                                            to page: </span>
+                                                                                        
+                                                                                        <% for (let index = 1; index <= pages + 1; index++) { 
+                                                                                            if (index - 1 == page) { %>
+                                                                                                <span
+                                                                                                    class="normalTextSmallBold">[<%= index %>]</span>
+                                                                                            
+                                                                                            <% } else { %>
+                                                                                                <a
+                                                                                                id="ctl00_cphRoblox_PostView1_ctl00_Pager_Page1"
+                                                                                                class="normalTextSmallBold"
+                                                                                                href="javascript:goto(<%= index - 1 %>)"><%= index %></a>
+                                                                                            <% } %>
+
+                                                                                            <% if (index != pages + 1) { %>
+                                                                                                <span
+                                                                                                    class="normalTextSmallBold">,
+                                                                                                </span>
+                                                                                            <% } %>
+                                                                                        <% } %>
+
+                                                                                        
+                                                                                        
+                                                                                            <span
+                                                                                            class="normalTextSmallBold">&nbsp;</span>
+                                                                                        <% if (page != pages) { %>
+                                                                                        <a
                                                                                             id="ctl00_cphRoblox_PostView1_ctl00_Pager_Next"
                                                                                             class="normalTextSmallBold"
-                                                                                            href="javascript:__doPostBack('ctl00$cphRoblox$PostView1$ctl00$Pager$Next','')">Next</a></span>
+                                                                                            href="javascript:goto(<%= page + 1 %>">Next</a></span>
+                                                                                        <% } %>
                                                                                 </td>
                                                                             </tr>
                                                                         </tbody>

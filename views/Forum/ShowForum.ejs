@@ -212,39 +212,101 @@
                                                                         width="100%">
                                                                         <tbody>
                                                                             <tr>
-                                                                                <td><span
+                                                                                <td>
+                                                                                    <% let maxpages = Math.floor(forum.threads / 25) %>
+                                                                                    <script>
+                                                                                        function goto(page) {
+                                                                                            if ('URLSearchParams' in window) {
+                                                                                                var searchParams = new URLSearchParams(window.location.search);
+                                                                                                searchParams.set("page", page);
+                                                                                                window.location.search = searchParams.toString();
+                                                                                            }
+                                                                                        }
+                                                                                    </script>
+                                                                                    <span
                                                                                         class="normalTextSmallBold">Page
-                                                                                        1 of 33</span></td>
-                                                                                <td align="right"><span><span
+                                                                                        <%= page + 1 %> of <%= maxpages %></span></td>
+                                                                                <td align="right"><span>
+                                                                                        <span
                                                                                             class="normalTextSmallBold">Goto
-                                                                                            to page: </span><a
-                                                                                            id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page0"
-                                                                                            class="normalTextSmallBold"
-                                                                                            href="javascript:__doPostBack('ctl00$cphRoblox$ThreadView1$ctl00$Pager$Page0','')">1</a><span
-                                                                                            class="normalTextSmallBold">,
-                                                                                        </span><a
-                                                                                            id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page1"
-                                                                                            class="normalTextSmallBold"
-                                                                                            href="javascript:__doPostBack('ctl00$cphRoblox$ThreadView1$ctl00$Pager$Page1','')">2</a><span
-                                                                                            class="normalTextSmallBold">,
-                                                                                        </span><a
-                                                                                            id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page2"
-                                                                                            class="normalTextSmallBold"
-                                                                                            href="javascript:__doPostBack('ctl00$cphRoblox$ThreadView1$ctl00$Pager$Page2','')">3</a><span
+                                                                                            to page: </span>
+                                                                                        <% if (page == 0) { %>
+                                                                                            <span
+                                                                                                class="normalTextSmallBold">[1],
+                                                                                            </span><a
+                                                                                                id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page1"
+                                                                                                class="normalTextSmallBold"
+                                                                                                href="javascript:goto(1)">2</a><span
+                                                                                                class="normalTextSmallBold">,
+                                                                                            </span><a
+                                                                                                id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page2"
+                                                                                                class="normalTextSmallBold"
+                                                                                                href="javascript:goto(2)">3</a>
+
+                                                                                        <% } else if (page < maxpages - 2) { %>
+                                                                                            <a
+                                                                                                id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page1"
+                                                                                                class="normalTextSmallBold"
+                                                                                                href="javascript:goto(<%= page - 1 %>)"><%= page %></a><span
+                                                                                                class="normalTextSmallBold">,
+                                                                                            </span><span
+                                                                                                class="normalTextSmallBold">[<%= page + 1 %>],
+                                                                                            </span><a
+                                                                                                id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page2"
+                                                                                                class="normalTextSmallBold"
+                                                                                                href="javascript:goto(<%= page + 1 %>)"><%= page + 2 %></a>
+                                                                                        <% } else { %>
+                                                                                            <a
+                                                                                                id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page2"
+                                                                                                class="normalTextSmallBold"
+                                                                                                href="javascript:goto(1)">1</a><span
+                                                                                                class="normalTextSmallBold">,
+                                                                                            </span><a
+                                                                                                id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page1"
+                                                                                                class="normalTextSmallBold"
+                                                                                                href="javascript:goto(2)">2</a><span
+                                                                                                class="normalTextSmallBold">,
+                                                                                            </span><a
+                                                                                                id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page2"
+                                                                                                class="normalTextSmallBold"
+                                                                                                href="javascript:goto(3)">3</a>                                                                                            
+                                                                                        <% } %>
+                                                                                        <span
                                                                                             class="normalTextSmallBold">
-                                                                                            ... </span><a
-                                                                                            id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page31"
-                                                                                            class="normalTextSmallBold"
-                                                                                            href="javascript:__doPostBack('ctl00$cphRoblox$ThreadView1$ctl00$Pager$Page31','')">32</a><span
-                                                                                            class="normalTextSmallBold">,
-                                                                                        </span><a
-                                                                                            id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page32"
-                                                                                            class="normalTextSmallBold"
-                                                                                            href="javascript:__doPostBack('ctl00$cphRoblox$ThreadView1$ctl00$Pager$Page32','')">33</a><span
-                                                                                            class="normalTextSmallBold">&nbsp;</span><a
+                                                                                            ... </span>
+                                                                                        <% if (page == maxpages - 2) { %>
+                                                                                            <span
+                                                                                                class="normalTextSmallBold">[<%= maxpages - 1 %>],
+                                                                                            </span><a
+                                                                                                id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page32"
+                                                                                                class="normalTextSmallBold"
+                                                                                                href="javascript:goto(<%= maxpages - 1 %>)"><%= maxpages %></a><span
+                                                                                                class="normalTextSmallBold">&nbsp;</span>
+                                                                                        <% } else if (page == maxpages - 1) { %>
+                                                                                            <a
+                                                                                                id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page32"
+                                                                                                class="normalTextSmallBold"
+                                                                                                href="javascript:goto(<%= maxpages - 2 %>)"><%= maxpages - 1 %></a><span
+                                                                                                class="normalTextSmallBold">,
+                                                                                            </span><span
+                                                                                                class="normalTextSmallBold">[<%= maxpages %>]&nbsp;</span>
+                                                                                        <% } else { %>
+                                                                                            <a
+                                                                                                id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page31"
+                                                                                                class="normalTextSmallBold"
+                                                                                                href="javascript:goto(<%= maxpages - 2 %>)"><%= maxpages - 1 %></a><span
+                                                                                                class="normalTextSmallBold">,
+                                                                                            </span><a
+                                                                                                id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page32"
+                                                                                                class="normalTextSmallBold"
+                                                                                                href="javascript:goto(<%= maxpages - 1 %>)"><%= maxpages %></a><span
+                                                                                                class="normalTextSmallBold">&nbsp;</span>
+                                                                                        <% } %>
+                                                                                        <a
                                                                                             id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Next"
                                                                                             class="normalTextSmallBold"
-                                                                                            href="javascript:__doPostBack('ctl00$cphRoblox$ThreadView1$ctl00$Pager$Next','')">Next</a></span>
+                                                                                            href="javascript:goto(<%= page + 1 %>)">Next</a></span>
+                                                                                        
                                                                                 </td>
                                                                             </tr>
                                                                         </tbody>
@@ -282,8 +344,7 @@
                                                                                             class="normalTextSmallBold">&nbsp;&gt;</span>
                                                                                         <a id="ctl00_cphRoblox_ThreadView1_ctl00_Whereami2_ctl00_LinkForumGroup"
                                                                                             class="linkMenuSink"
-                                                                                            href="/Forum/ShowForumGroup.aspx?ForumGroupID=4">Help
-                                                                                            Center</a>
+                                                                                            href="/Forum/ShowForumGroup.aspx?ForumGroupID=<%= group.id %>"><%= group.name %></a>
                                                                                     </nobr>
                                                                                 </td>
 
@@ -296,8 +357,7 @@
                                                                                             class="normalTextSmallBold">&nbsp;&gt;</span>
                                                                                         <a id="ctl00_cphRoblox_ThreadView1_ctl00_Whereami2_ctl00_LinkForum"
                                                                                             class="linkMenuSink"
-                                                                                            href="/Forum/ShowForum.aspx?ForumID=28">ROBLOX
-                                                                                            Testing</a>
+                                                                                            href="/Forum/ShowForum.aspx?ForumID=<%= forum.id %>"><%= forum.name %></a>
                                                                                     </nobr>
                                                                                 </td>
 
