@@ -5,7 +5,7 @@ module.exports = async function(database, req) {
     let offset = page * 25
 
     let res = await database.query(`
-    SELECT postid, postsubject, replies, authorid, lastpost
+    SELECT postsubject, postbody, authorid, postdate, subforum
     FROM posts
     WHERE parentthread = $1
     ORDER BY postdate ASC
@@ -13,5 +13,5 @@ module.exports = async function(database, req) {
     OFFSET $2;
     `, [req.query.PostID, offset])
 
-    return {forum: forum.find(g => g.forums.find(f => f.id == req.query.ForumID)), posts: res.rows}
+    return {forum: forum.find(g => g.forums.find(f => f.id == res.subforum)), posts: res.rows}
 }

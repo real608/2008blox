@@ -85,8 +85,7 @@
 
                                                                                         <a id="ctl00_cphRoblox_ThreadView1_ctl00_Whereami1_ctl00_LinkForumGroup"
                                                                                             class="linkMenuSink"
-                                                                                            href="/Forum/ShowForumGroup.aspx?ForumGroupID=4">Help
-                                                                                            Center</a>
+                                                                                            href="/Forum/ShowForumGroup.aspx?ForumGroupID=<%= group.id %>"><%= group.name %></a>
                                                                                     </nobr>
                                                                                 </td>
 
@@ -99,8 +98,7 @@
                                                                                             class="normalTextSmallBold">&nbsp;&gt;</span>
                                                                                         <a id="ctl00_cphRoblox_ThreadView1_ctl00_Whereami1_ctl00_LinkForum"
                                                                                             class="linkMenuSink"
-                                                                                            href="/Forum/ShowForum.aspx?ForumID=28">ROBLOX
-                                                                                            Testing</a>
+                                                                                            href="/Forum/ShowForum.aspx?ForumID=<%= forum.id %>"><%= forum.name %></a>
                                                                                     </nobr>
                                                                                 </td>
 
@@ -167,7 +165,7 @@
                                                                                 nowrap="nowrap">&nbsp;Last Post&nbsp;
                                                                             </th>
                                                                         </tr>
-                                                                        
+
                                                                         <% for (let thread of posts) { %> 
                                                                             <tr>
                                                                                 <td class="forumRow" align="center"

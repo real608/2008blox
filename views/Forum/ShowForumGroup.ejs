@@ -76,7 +76,7 @@
             
                                                                         <a id="ctl00_cphRoblox_Whereami1_ctl00_LinkForumGroup"
                                                                             class="linkMenuSink"
-                                                                            href="/Forum/ShowForumGroup.aspx?ForumGroupID=4"><%= group.name %></a>
+                                                                            href="/Forum/ShowForumGroup.aspx?ForumGroupID=<%= group.id %>"><%= group.name %></a>
                                                                     </nobr>
                                                                 </td>
             
@@ -130,14 +130,14 @@
                                                                         src="/Forum/skins/default/images/forum_status.gif"
                                                                         width="34" ></td>
                                                                 <td class="forumRow" width="80%"><a class="forumTitle"
-                                                                        href="/Forum/ShowForum.aspx?ForumID=28"><%= subforum.name %></a>
+                                                                        href="/Forum/ShowForum.aspx?ForumID=<%= subforum.id %>"><%= subforum.name %></a>
                                                                         <span class="normalTextSmall"><br><%= subforum.description %></span></td>
                                                                 <td class="forumRowHighlight" ><span
                                                                         class="normalTextSmaller"><%= formatNum(subforum.threads) %></span></td>
                                                                 <td class="forumRowHighlight" ><span
                                                                         class="normalTextSmaller"><%= formatNum(subforum.posts) %></span></td>
                                                                 <td class="forumRowHighlight" ><span
-                                                                        class="normalTextSmaller"><span><%- formatDate(subforum.lastpost.postdate) %></span></span><br><span
+                                                                        class="normalTextSmaller"><span><%- formatRelativeDate(subforum.lastpost.postdate) %></span></span><br><span
                                                                         class="normalTextSmaller">by <a
                                                                         href="/Forum/User/UserProfile.aspx?UserName=<%= subforum.lastpost.authorid %>"><%= subforum.lastpost.authorid %></a><a
                                                                         href="/Forum/ShowPost.aspx?PostID=<%= subforum.lastpost.parentthread %>#<%= subforum.lastpost.postid %>"><img
@@ -170,8 +170,7 @@
                                                                         class="normalTextSmallBold">&nbsp;&gt;</span>
                                                                     <a id="ctl00_cphRoblox_Whereami2_ctl00_LinkForumGroup"
                                                                         class="linkMenuSink"
-                                                                        href="/Forum/ShowForumGroup.aspx?ForumGroupID=4">Help
-                                                                        Center</a>
+                                                                        href="/Forum/ShowForumGroup.aspx?ForumGroupID=<%= group.id %>"><%= group.name %></a>
                                                                 </nobr>
                                                             </td>
             

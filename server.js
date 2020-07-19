@@ -144,23 +144,31 @@ app.get('*', function(req, res, next) {
         first.getMonth() === second.getMonth() &&
         first.getDate() === second.getDate();
 
+    function getTime(date) {
+      let time = threadDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+      if (time.length == 7) { // Pad
+          time = "0" + time
+      }
+    }
+
     res.locals.formatDate = function(date) {
-        threadDate = new Date(date)
+      threadDate = new Date(date)
 
-        let time = threadDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-        if (time.length == 7) { // Pad
-            time = "0" + time
-        }
+      const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(threadDate)
+      const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(threadDate)
+      const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(threadDate)
 
-        if (res.locals.datesAreOnSameDay(threadDate, res.locals.currentDate)) {
-            return "<b>Today @ " + time + "</b>"
-        }
+      return da + " " + mo + " " + ye + " " + time
+    }
 
-        const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(threadDate)
-        const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(threadDate)
-        const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(threadDate)
+    res.locals.formatRelativeDate = function(date) {
+      threadDate = new Date(date)
 
-        return da + " " + mo + " " + ye + " " + time
+      if (res.locals.datesAreOnSameDay(threadDate, res.locals.currentDate)) {
+          return "<b>Today @ " + getTime(threadDate) + "</b>"
+      }
+
+      return res.locals.formatDate(date)
     }
 
     next();
