@@ -7,6 +7,16 @@ const device = require('express-device');
 const path = require('path');
 const fs = require('fs')
 
+const { Client } = require('pg')
+require('dotenv').config();
+const client = new Client()
+
+client.connect().then(() => {
+    console.log("connected to database")
+}).catch(err => {
+    console.error(err)
+})
+
 var app = express();
 
 var port = process.env.PORT || 8080
@@ -136,7 +146,7 @@ app.post('/Accept.aspx', function(req, res) {
   if (req.body.yes) {
     res.cookie('accepted', true, { expires: new Date(Date.now() + 900000), httpOnly: true });
     res.cookie('blankurl', "/blank.png", { expires: new Date(Date.now() + 900000) });
-    res.redirect('/')
+    res.redirect('back')
   } else {
     res.redirect('/ohnoes')
   }
@@ -168,7 +178,7 @@ app.get('/ohnoes', function(req, res) {
    res.sendFile(path.join(__dirname, "./public/oof.png"));
 });
 
-app.get('*', function(req, res){
+app.get('*', async function(req, res){
   // Check if this is a path
   let JSPath = path.join(
     __dirname, path.join("server", req.path.replace(".aspx", ".js"))
@@ -181,7 +191,8 @@ app.get('*', function(req, res){
   if (viewPath.endsWith(".ejs") && fs.existsSync(viewPath)) {
     let params = {}
     if (fs.existsSync(JSPath)) {
-      params = require(JSPath)
+      let func = require(JSPath)
+      params = await func(client, req)
     }
     return res.render(viewPath, params)
   }
