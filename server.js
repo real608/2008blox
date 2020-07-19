@@ -132,6 +132,37 @@ app.get('*', function(req, res, next) {
     res.locals.partials = path.join(
       __dirname, "views/partials"
     )
+
+    res.locals.currentDate = new Date('2008-07-25 10:04:00.000')
+
+    res.locals.formatNum = function(n) {
+        return n.toLocaleString()
+    }
+
+    res.locals.datesAreOnSameDay = (first, second) =>
+        first.getFullYear() === second.getFullYear() &&
+        first.getMonth() === second.getMonth() &&
+        first.getDate() === second.getDate();
+
+    res.locals.formatDate = function(date) {
+        threadDate = new Date(date)
+
+        let time = threadDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+        if (time.length == 7) { // Pad
+            time = "0" + time
+        }
+
+        if (res.locals.datesAreOnSameDay(threadDate, res.locals.currentDate)) {
+            return "<b>Today @ " + time + "</b>"
+        }
+
+        const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(threadDate)
+        const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(threadDate)
+        const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(threadDate)
+
+        return da + " " + mo + " " + ye + " " + time
+    }
+
     next();
   } else {
     res.render('meta/disclaimer.ejs');

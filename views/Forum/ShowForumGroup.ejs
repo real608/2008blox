@@ -117,12 +117,6 @@
                                                                 Post&nbsp;</th>
                                                         </tr>
 
-                                                        <% 
-                                                            function formatNum(n) {
-                                                                return n.toLocaleString()
-                                                            }
-                                                        %>
-
                                                         <tr id="ctl00_cphRoblox_Forumgrouprepeater1_ctl01_ForumGroup">
                                                             <td class="forumHeaderBackgroundAlternate" colspan="5" height="20"><a
                                                                     id="ctl00_cphRoblox_Forumgrouprepeater1_ctl01_GroupTitle"
@@ -143,7 +137,7 @@
                                                                 <td class="forumRowHighlight" ><span
                                                                         class="normalTextSmaller"><%= formatNum(subforum.posts) %></span></td>
                                                                 <td class="forumRowHighlight" ><span
-                                                                        class="normalTextSmaller"><span><b>Today @ <% const date = new Date(subforum.lastpost.postdate) %><%= date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) %></b></span></span><br><span
+                                                                        class="normalTextSmaller"><span><%- formatDate(subforum.lastpost.postdate) %></span></span><br><span
                                                                         class="normalTextSmaller">by <a
                                                                         href="/Forum/User/UserProfile.aspx?UserName=<%= subforum.lastpost.authorid %>"><%= subforum.lastpost.authorid %></a><a
                                                                         href="/Forum/ShowPost.aspx?PostID=<%= subforum.lastpost.parentthread %>#<%= subforum.lastpost.postid %>"><img
