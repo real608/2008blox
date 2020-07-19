@@ -1,10 +1,12 @@
 // server.js
 // load the things we need
-var express = require('express');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var device = require('express-device');
-var path = require('path');
+const express = require('express');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const device = require('express-device');
+const path = require('path');
+const fs = require('fs')
+
 var app = express();
 
 var port = process.env.PORT || 8080
@@ -117,16 +119,30 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // index page 
 app.get('*', function(req, res, next) {
   if (req.cookies.accepted == "true" || req.path == "/ohnoes" || req.path == "/discord" || req.device.type == "bot") {
+    res.locals.partials = path.join(
+      __dirname, "views/partials"
+    )
     next();
   } else {
-    res.render('disclaimer.ejs');
+    res.render('meta/disclaimer.ejs');
   }
 });
 
 app.get('/', function(req, res) {
-    res.render('index.ejs', {'blankurl': req.cookies.blankurl});
+    res.render('meta/index.ejs', {'blankurl': req.cookies.blankurl});
 });
 
+app.post('/Accept.aspx', function(req, res) {
+  if (req.body.yes) {
+    res.cookie('accepted', true, { expires: new Date(Date.now() + 900000), httpOnly: true });
+    res.cookie('blankurl', "/blank.png", { expires: new Date(Date.now() + 900000) });
+    res.redirect('/')
+  } else {
+    res.redirect('/ohnoes')
+  }
+});
+
+/*
 app.get('/Parents.aspx', function(req, res) {
   res.render('parents.ejs', {'blankurl': req.cookies.blankurl});
 })
@@ -134,7 +150,7 @@ app.get('/Parents.aspx', function(req, res) {
 app.get('/Parents/:page.aspx', function(req, res) {
   res.render('parents/' + req.params.page + '.ejs', {'blankurl': req.cookies.blankurl});
 })
-
+*/
 
 app.get('/license', function(req, res) {
     res.redirect("https://github.com/2008blox/2008blox/blob/master/LICENSE"); //Gotta be professional, ya know?
@@ -152,22 +168,25 @@ app.get('/ohnoes', function(req, res) {
    res.sendFile(path.join(__dirname, "./public/oof.png"));
 });
 
-app.post('/Accept.aspx', function(req, res) {
-  if (req.body.yes) {
-    res.cookie('accepted', true, { expires: new Date(Date.now() + 900000), maxAge: 900000, httpOnly: true });
-    res.cookie('blankurl', "/blank.png", { expires: new Date(Date.now() + 900000), maxAge: 900000, httpOnly: true });
-    res.redirect('/')
-  } else {
-    res.redirect('/ohnoes')
-  }
-});
-
-app.get('/User.aspx', function(req, res) {
-
-});
-
 app.get('*', function(req, res){
-  return res.status(404).render('404.ejs');
+  // Check if this is a path
+  let JSPath = path.join(
+    __dirname, path.join("server", req.path.replace(".aspx", ".js"))
+  )
+
+  let viewPath = path.join(
+    __dirname, path.join("views", req.path.replace(".aspx", ".ejs"))
+  )
+
+  if (viewPath.endsWith(".ejs") && fs.existsSync(viewPath)) {
+    let params = {}
+    if (fs.existsSync(JSPath)) {
+      params = require(JSPath)
+    }
+    return res.render(viewPath, params)
+  }
+
+  return res.status(404).render('meta/404.ejs');
 });
 
 app.listen(port);

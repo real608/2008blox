@@ -1,14 +1,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" id="www-roblox-com">
 
-<%- include('../partials/head') %>
+<%- include(partials + '/head') %>
 
 <body>
-    <form name="aspnetForm" method="post" action="Default.aspx" id="aspnetForm">
+    
 
         <div id="Container">
 
-            <%- include('../partials/header') -%>
+            <%- include(partials + '/header') -%>
             
             
             <div id="Body">
@@ -61,7 +61,7 @@
                         </dd>
                         <dt><a name="BuildersClubSignUp">How do I sign my child up for Builders Club?</a></dt>
                         <dd>
-                            <p>Click on the Builder's Club menu button on the home page to start the step-by-step process (or start the process right now by clicking <a id="ctl00_cphRoblox_BuildersClubHyperLink" href="/web/20080714000308/http://www.roblox.com/Upgrades/BuildersClub.aspx">here</a>).</p>
+                            <p>Click on the Builder's Club menu button on the home page to start the step-by-step process (or start the process right now by clicking <a id="ctl00_cphRoblox_BuildersClubHyperLink" href="/Upgrades/BuildersClub.aspx">here</a>).</p>
                             <p>If your child already has an account on ROBLOX the process is straightforward.  You'll simply need to sign in to his or her account to complete the enrollment process.</p>
                             <p>If your child doesn't already have an account, you'll need to set her or him up with a username and a temporary password.</p>
                         </dd>
@@ -70,8 +70,6 @@
 
             </div>
 
-            <%- include('../partials/footer') -%>
-    </form>
+            <%- include(partials + '/footer') -%>
 </body>
-
 </html>

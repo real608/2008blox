@@ -1,13 +1,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" id="www-roblox-com">
 
-<%- include('partials/head') %>
+<%- include(partials + '/head') %>
 
 <body>
-    <form name="aspnetForm" method="post" action="Default.aspx" id="aspnetForm">
+    
 
         <div id="Container">
 
-            <%- include partials/header -%>
+            <%- include(partials + '/header') -%>
             
             
             <div id="Body">
@@ -99,7 +99,7 @@
                         </ul>
                         <div id="Showcase">
                             <a href="#" onclick="$(this).children().get(0).play();$(this).children().attr('controls',true);$(this).removeAttr('href');$(this).removeAttr('onclick')">
-                                <video width="400" height="326" frameborder="0" controlslist="nodownload" poster="/resources/Showcase.png" preload="none" disablepictureinpicture="">
+                                <video width="400" height="326" frame controlslist="nodownload" poster="/resources/Showcase.png" preload="none" disablepictureinpicture="">
                                     <source src="resources/PlayTrailer.mp4" type="video/mp4">
                                 </video>
                             </a>
@@ -127,8 +127,7 @@
                 </div>
             </div>
 
-            <%- include partials/footer -%>
-    </form>
+            <%- include(partials + '/footer') -%>
 </body>
 
 </html>
