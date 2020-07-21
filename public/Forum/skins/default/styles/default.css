@@ -155,7 +155,6 @@ General Text
 .normalTextSmall 
 { 
     font-size : 1.0em;
-    white-space: break-spaces;
 }
 
 .normalTextSmallBold
@@ -172,7 +171,8 @@ General Text
 .normalTextSmall, .normalTextSmallBold, .normalTextSmaller
 { 
     color : #000000; 
-	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    white-space: break-spaces;
 }
 
 /*****************************************************
