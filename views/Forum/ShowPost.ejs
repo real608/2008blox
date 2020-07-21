@@ -84,8 +84,7 @@
 
                                                                                         <a id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_LinkForumGroup"
                                                                                             class="linkMenuSink"
-                                                                                            href="/Forum/ShowForumGroup.aspx?ForumGroupID=4">Help
-                                                                                            Center</a>
+                                                                                            href="/Forum/ShowForumGroup.aspx?ForumGroupID=<%= group.id %>"><%= group.name %></a>
                                                                                     </nobr>
                                                                                 </td>
 
@@ -98,8 +97,7 @@
                                                                                             class="normalTextSmallBold">&nbsp;&gt;</span>
                                                                                         <a id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_LinkForum"
                                                                                             class="linkMenuSink"
-                                                                                            href="/Forum/ShowForum.aspx?ForumID=28">ROBLOX
-                                                                                            Testing</a>
+                                                                                            href="/Forum/ShowForum.aspx?ForumID=<%= forum.id %>"><%= forum.name %></a>
                                                                                     </nobr>
                                                                                 </td>
 
@@ -112,9 +110,7 @@
                                                                                             class="normalTextSmallBold">&nbsp;&gt;</span>
                                                                                         <a id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_LinkPost"
                                                                                             class="linkMenuSink"
-                                                                                            href="/Forum/ShowPost.aspx?PostID=2419062">Test
-                                                                                            website blocked by mcafee!
-                                                                                            MODS READ THIS</a>
+                                                                                            href="/Forum/ShowPost.aspx?PostID=<%= posts[0].postid %>"><%= posts[0].postsubject %></a>
                                                                                     </nobr>
                                                                                 </td>
 
@@ -196,15 +192,14 @@
                                                                                             </tr>
                                                                                             <tr>
                                                                                                 <td><span
-                                                                                                        class="normalTextSmaller"><b>Joined:</b>
-                                                                                                        18 Feb 2008</span>
+                                                                                                        class="normalTextSmaller"><b>Joined: </b><created id="<%= post.authorid %>"></created></span>
                                                                                                 </td>
                                                                                             </tr>
                                                                                             <tr>
                                                                                                 <td><span
                                                                                                         class="normalTextSmaller"><b>Total
                                                                                                             Posts:
-                                                                                                        </b>460</span></td>
+                                                                                                        </b>?</span></td>
                                                                                             </tr>
                                                                                             <tr>
                                                                                                 <td>&nbsp;</td>
@@ -244,7 +239,7 @@
                                                                                             </tr>
                                                                                             <tr>
                                                                                                 <td colspan="2"><a
-                                                                                                        href="/Forum/AddPost.aspx?PostID=2631398&amp;mode=flat"><img
+                                                                                                        href="#"><img
                                                                                                             border="0"
                                                                                                             src="/Forum/skins/default/images/newpost.gif"></a><a
                                                                                                         href="#">Report
@@ -373,8 +368,7 @@
                                                                                             class="normalTextSmallBold">&nbsp;&gt;</span>
                                                                                         <a id="ctl00_cphRoblox_PostView1_ctl00_Whereami2_ctl00_LinkForumGroup"
                                                                                             class="linkMenuSink"
-                                                                                            href="/Forum/ShowForumGroup.aspx?ForumGroupID=4">Help
-                                                                                            Center</a>
+                                                                                            href="/Forum/ShowForumGroup.aspx?ForumGroupID=<%= group.id %>"><%= group.name %></a>
                                                                                     </nobr>
                                                                                 </td>
 
@@ -387,8 +381,7 @@
                                                                                             class="normalTextSmallBold">&nbsp;&gt;</span>
                                                                                         <a id="ctl00_cphRoblox_PostView1_ctl00_Whereami2_ctl00_LinkForum"
                                                                                             class="linkMenuSink"
-                                                                                            href="/Forum/ShowForum.aspx?ForumID=28">ROBLOX
-                                                                                            Testing</a>
+                                                                                            href="/Forum/ShowForum.aspx?ForumID=<%= forum.id %>"><%= forum.name %></a>
                                                                                     </nobr>
                                                                                 </td>
 
@@ -401,9 +394,7 @@
                                                                                             class="normalTextSmallBold">&nbsp;&gt;</span>
                                                                                         <a id="ctl00_cphRoblox_PostView1_ctl00_Whereami2_ctl00_LinkPost"
                                                                                             class="linkMenuSink"
-                                                                                            href="/Forum/ShowPost.aspx?PostID=2419062">Test
-                                                                                            website blocked by mcafee!
-                                                                                            MODS READ THIS</a>
+                                                                                            href="/Forum/ShowPost.aspx?PostID=<%= postid %>"><%= posts[0].postsubject %></a>
                                                                                     </nobr>
                                                                                 </td>
 

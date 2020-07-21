@@ -25,5 +25,11 @@ module.exports = async function(database, req) {
     LIMIT 25;
     `, [req.query.PostID, offset])
 
-    return {forum: forum.find(g => g.forums.find(f => f.id == res.subforum)), posts: res.rows, page: parseInt(page), pages: pages}
+    let ForumID = res.rows[0].subforum
+    let group = forum.find(g => g.forums.some(f => f.id == ForumID))
+    return {forum: group.forums.find(f => f.id == ForumID),
+        group: group, 
+        posts: res.rows, page: parseInt(page), pages: pages,
+        postid: req.query.PostID
+    }
 }

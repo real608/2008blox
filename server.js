@@ -128,7 +128,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // index page 
 app.get('*', function(req, res, next) {
-  if (req.cookies.accepted == "true" || req.path == "/ohnoes" || req.path == "/discord" || req.device.type == "bot") {
+  if (req.cookies.acceptednew == "true" || req.path == "/ohnoes" || req.path == "/discord" || req.device.type == "bot") {
     res.locals.partials = path.join(
       __dirname, "views/partials"
     )
@@ -184,7 +184,7 @@ app.get('/', function(req, res) {
 
 app.post('/Accept.aspx', function(req, res) {
   if (req.body.yes) {
-    res.cookie('accepted', true, { expires: new Date(Date.now() + 900000), httpOnly: true });
+    res.cookie('acceptednew', true, { expires: new Date(Date.now() + 900000), httpOnly: true });
     res.cookie('blankurl', "/blank.png", { expires: new Date(Date.now() + 900000) });
     res.redirect('back')
   } else {
