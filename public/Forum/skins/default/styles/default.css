@@ -155,6 +155,7 @@ General Text
 .normalTextSmall 
 { 
     font-size : 1.0em;
+    white-space: break-spaces;
 }
 
 .normalTextSmallBold
