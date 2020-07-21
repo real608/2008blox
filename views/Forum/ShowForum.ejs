@@ -4,7 +4,7 @@
 
 <body>
     <link rel="stylesheet" type="text/css" href="/Forum/skins/default/styles/default.css">
-
+    <script src="/username.js"></script>
 
 
     <div id="Container">
@@ -175,14 +175,14 @@
                                                                                         border="0"></td>
                                                                                 <td class="forumRow" height="25"><a
                                                                                         class="linkSmallBold"
-                                                                                        href="/Forum/ShowPost.aspx?PostID=<%= thread.postid %>"><%= thread.postsubject %></a></td>
+                                                                                        href="/Forum/ShowPost.aspx?PostID=<%= thread.threadpostid %>"><%= thread.threadpostsubject %></a></td>
                                                                                 <td class="forumRowHighlight" align="left"
                                                                                     width="100">&nbsp;<a class="linkSmall"
-                                                                                        href="/Forum/User/UserProfile.aspx?UserName=<%= thread.authorid %>"><%= thread.authorid %></a>
+                                                                                        href="/Forum/User/UserProfile.aspx?UserName=<%= thread.threadauthorid %>"><username id="<%= thread.threadauthorid %>"></username></a>
                                                                                 </td>
                                                                                 <td class="forumRowHighlight" align="center"
                                                                                     width="50"><span
-                                                                                        class="normalTextSmaller"><%= formatNum(thread.replies) %></span>
+                                                                                        class="normalTextSmaller"><%= formatNum(thread.threadreplies) %></span>
                                                                                 </td>
                                                                                 <td class="forumRowHighlight" align="center"
                                                                                     width="50"><span
@@ -190,11 +190,10 @@
                                                                                 </td>
                                                                                 <td class="forumRowHighlight" align="center"
                                                                                     width="140" nowrap="nowrap"><span
-                                                                                        class="normalTextSmaller"><b>Today @
-                                                                                            06:42 PM</b><br>by </span><a
+                                                                                        class="normalTextSmaller"><%- formatRelativeDate(thread.lastreplydate) %><br>by </span><a
                                                                                         class="linkSmall"
-                                                                                        href="/Forum/User/UserProfile.aspx?UserName=?">?</a><a
-                                                                                        href="/Forum/ShowPost.aspx?PostID=<%= thread.postid %>#<%= thread.lastpost %>"><img
+                                                                                        href="/Forum/User/UserProfile.aspx?UserName=<%= thread.lastreplyauthorid %>"><username id="<%= thread.lastreplyauthorid %>"></username></a><a
+                                                                                        href="/Forum/ShowPost.aspx?PostID=<%= thread.postid %>#<%= thread.lastreplyid %>"><img
                                                                                             border="0"
                                                                                             src="/Forum/skins/default/images/icon_mini_topic.gif"></a>
                                                                                 </td>

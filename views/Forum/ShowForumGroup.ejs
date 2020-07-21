@@ -4,7 +4,7 @@
 
 <body>
     <link rel="stylesheet" type="text/css" href="/Forum/skins/default/styles/default.css">
-        
+    <script src="/username.js"></script>     
     
 
         <div id="Container">
@@ -139,7 +139,7 @@
                                                                 <td class="forumRowHighlight" ><span
                                                                         class="normalTextSmaller"><span><%- formatRelativeDate(subforum.lastpost.postdate) %></span></span><br><span
                                                                         class="normalTextSmaller">by <a
-                                                                        href="/Forum/User/UserProfile.aspx?UserName=<%= subforum.lastpost.authorid %>"><%= subforum.lastpost.authorid %></a><a
+                                                                        href="/Forum/User/UserProfile.aspx?UserName=<%= subforum.lastpost.authorid %>"><username id="<%= subforum.lastpost.authorid %>"></username></a><a
                                                                         href="/Forum/ShowPost.aspx?PostID=<%= subforum.lastpost.parentthread %>#<%= subforum.lastpost.postid %>"><img
                                                                             border="0"
                                                                             src="/Forum/skins/default/images/icon_mini_topic.gif"></a></span>
