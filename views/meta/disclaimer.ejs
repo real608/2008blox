@@ -6,17 +6,57 @@
 
 <body>
     <script>
-        fetch("/names.json")
-            .then(response => response.text()) 
-            .then(dataStr => {
-                localStorage.setItem("names_cache", dataStr)
-            });
+        localStorage.clear(); // Clear legacy cache
+        
+        // https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB
+        window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || 
+        window.msIndexedDB;
+        
+        window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || 
+        window.msIDBTransaction;
+        window.IDBKeyRange = window.IDBKeyRange || 
+        window.webkitIDBKeyRange || window.msIDBKeyRange
+        
+        if (!window.indexedDB) {
+            window.alert("Your browser doesn't support a stable version of IndexedDB. Forums will be kinda messed up and limited.")
+            throw new Error();
+        }
 
-        fetch("/created.json")
-            .then(response => response.text()) 
-            .then(dataStr => {
-                localStorage.setItem("created_cache", dataStr)
-            });
+        let req = window.indexedDB.open("forum", 2);
+
+        req.onupgradeneeded = function(event) { 
+            let db = event.target.result;
+            let users = db.createObjectStore("forum", { keyPath: "id" });
+            users.createIndex("id", "id", { unique: true });
+            users.transaction.oncomplete = function(event) {
+                fetch("/cache.json")
+                .then(response => response.json()) 
+                .then(dataStr => {
+                    var forum = db.transaction(["forum"], "readwrite");
+                    var objstore = forum.objectStore("forum");
+                    var errored = false;
+
+                    forum.oncomplete = function(event) {
+                        console.log("Successfully cached!")
+                    }
+
+                    console.log("Caching " + dataStr.length + " forum users..")
+                    dataStr.forEach(forumuser => {
+                        objstore.add({id: forumuser[0], name: forumuser[1], created: forumuser[2]}).onerror = function(event) {
+                            if (!errored) {
+                                errored = true;
+                                alert("An error occurred while caching forums! Please tell bloxxite about this.");
+                                console.log(event, forumuser);
+                            }
+                        }
+                    })
+                }).catch(err => {
+                    alert("Error occurred while requesting forum cache! Please notify bloxxite about this.")
+                    throw err;
+                });
+            }
+        }
+        
     </script>
 
 
